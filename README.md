@@ -46,10 +46,10 @@ Enrutamiento
           ↓
     Respuesta al usuario
 
-## Funcionalidades principales
-### Recepción de incidencias
+Funcionalidades principales
+Recepción de incidencias
 El sistema recibe mensajes desde Telegram y normaliza la información necesaria para procesarlos.
-### Clasificación mediante IA
+Clasificación mediante IA
 La inteligencia artificial analiza el contenido de la solicitud y determina:
 - Categoría
 - Subcategoría
@@ -57,7 +57,7 @@ La inteligencia artificial analiza el contenido de la solicitud y determina:
 - Impacto
 - Urgencia
 - Resumen
-### Categorías
+Categorías
 El sistema utiliza ocho categorías cerradas:
 1. HARDWARE
 2. SOFTWARE
@@ -67,20 +67,19 @@ El sistema utiliza ocho categorías cerradas:
 6. SOLICITUDES Y SERVICIOS
 7. TELEFONIA_COMUNICACIONES
 8. INFRAESTRUCTURA_SERVIDORES
-### Asignación de equipos
-| Categoría | Equipo responsable |
-|---|---|
-| HARDWARE | Soporte Técnico |
-| SOFTWARE | Soporte Técnico |
-| REDES_CONECTIVIDAD | Operaciones |
-| ACCESOS_SEGURIDAD | Operaciones |
-| IMPRESORAS | Soporte Técnico |
-| SOLICITUDES Y SERVICIOS | Mesa de Ayuda |
-| TELEFONIA_COMUNICACIONES | Operaciones |
-| INFRAESTRUCTURA_SERVIDORES | Operaciones |
+Asignación de equipos
+Categoría	Equipo responsable
+HARDWARE	Soporte Técnico
+SOFTWARE	Soporte Técnico
+REDES_CONECTIVIDAD	Operaciones
+ACCESOS_SEGURIDAD	Operaciones
+IMPRESORAS	Soporte Técnico
+SOLICITUDES Y SERVICIOS	Mesa de Ayuda
+TELEFONIA_COMUNICACIONES	Operaciones
+INFRAESTRUCTURA_SERVIDORES	Operaciones
 
 
-### Gestión de tickets
+Gestión de tickets
 Los tickets contienen información de identificación, usuario, solicitud, clasificación, prioridad, estado y equipo responsable.
 Estados utilizados:
 - NUEVO
@@ -89,39 +88,26 @@ Estados utilizados:
 - RESUELTO
 - CERRADO
 - PENDIENTE_APROBACION
-```text
-### Consulta de estado
-
+Consulta de estado
 El usuario puede consultar un ticket utilizando su identificador.
-
-```text
 estado TKT-YYYYMMDD-HHMMSS-ID
 
-### Protección contra duplicados
+Protección contra duplicados
 El flujo incorpora una validación de idempotencia utilizando:
 - chat_id
 - telegram_message_id
 Esto evita registrar nuevamente un mismo mensaje procesado.
-```text
-### Human-in-the-loop
-
+Human-in-the-loop
 Las solicitudes clasificadas como críticas requieren aprobación humana antes de continuar con la gestión normal del ticket.
-
 Se utilizan las acciones:
-
 - APROBAR_TICKET
 - RECHAZAR_TICKET
-
 Los tickets pendientes de aprobación utilizan el estado:
-
-```text
 PENDIENTE_APROBACION
 
-## Gestión de errores
+Gestión de errores
 El proyecto utiliza un workflow independiente:
-
 Mesa de Ayuda - Gestión de Errores
-
 Este workflow recibe los errores mediante Error Trigger y registra la información en una tabla específica de Airtable.
 Los errores registrados incluyen:
 - Identificador del error
@@ -138,10 +124,9 @@ Severidades:
 - MEDIA
 - ALTA
 - CRITICA
-  
-## Persistencia de información
+Persistencia de información
 La información se almacena en Airtable.
-### Tabla Tickets
+Tabla Tickets
 Contiene información relacionada con:
 - ticket_id
 - fecha_creacion
@@ -158,10 +143,9 @@ Contiene información relacionada con:
 - urgencia
 - resumen
 - equipo_responsable
-### Tabla Errores
+Tabla Errores
 Permite registrar y realizar seguimiento de los errores generados durante la ejecución de los workflows.
-
-## Dashboard
+Dashboard
 El proyecto incluye un dashboard desarrollado mediante Airtable Interface.
 Indicadores utilizados:
 - Total de tickets
@@ -173,8 +157,7 @@ Indicadores utilizados:
 - Distribución por equipo
 - Distribución por estado
 El dashboard se encuentra implementado como parte del proyecto. El acceso público mediante la web depende de las funcionalidades y permisos disponibles en el plan de Airtable utilizado.
-
-## Evidencias y documentación
+Evidencias y documentación
 El repositorio contiene la documentación técnica y las evidencias utilizadas para la entrega del proyecto.
 La documentación incluye:
 - Arquitectura del sistema
@@ -185,19 +168,13 @@ La documentación incluye:
 - Gestión de errores
 - Pruebas y validación
 - Documento final de entrega
-
-```text
-## Workflow de n8n
-
+Workflow de n8n
 El workflow exportado se encuentra en:
-
-```text
 workflow/
 └── Mesa de Ayuda - Recepción de Incidencias_FINAL.json
 
 El archivo permite disponer del blueprint del workflow utilizado en el proyecto.
-
-## Seguridad
+Seguridad
 Por razones de seguridad, este repositorio no contiene:
 - Contraseñas
 - API Keys
@@ -207,14 +184,9 @@ Por razones de seguridad, este repositorio no contiene:
 - Credenciales de n8n
 - Variables de entorno con información sensible
 Las credenciales deben configurarse directamente en el entorno de ejecución de n8n.
-
-## Resultado
+Resultado
 El proyecto integra automatización, inteligencia artificial, persistencia de datos, clasificación automática, gestión de tickets, aprobación humana para casos críticos, consulta de estados, control de duplicados y gestión centralizada de errores.
 El objetivo es demostrar una arquitectura de automatización aplicable a un escenario real de Mesa de Ayuda IT.
-
-```text
-## Autor
-
+Autor
 J.J.LOPEZ
-
 Tecnologías principales: n8n · Telegram · Airtable · OpenRouter · IA
