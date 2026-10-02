@@ -22,7 +22,6 @@ Diseñar e implementar un sistema automatizado capaz de recibir solicitudes de u
 El flujo principal comienza con la recepción de mensajes mediante Telegram.
 
 ```text
-
 Telegram
    ↓
 Normalización del mensaje
@@ -46,7 +45,6 @@ Enrutamiento
        Airtable
           ↓
     Respuesta al usuario
-```
 
 ## Funcionalidades principales
 ### Recepción de incidencias
@@ -91,28 +89,33 @@ Estados utilizados:
 - RESUELTO
 - CERRADO
 - PENDIENTE_APROBACION
+```text
 ### Consulta de estado
+
 El usuario puede consultar un ticket utilizando su identificador.
 
 ```text
 estado TKT-YYYYMMDD-HHMMSS-ID
-```
 
 ### Protección contra duplicados
 El flujo incorpora una validación de idempotencia utilizando:
 - chat_id
 - telegram_message_id
 Esto evita registrar nuevamente un mismo mensaje procesado.
+```text
 ### Human-in-the-loop
+
 Las solicitudes clasificadas como críticas requieren aprobación humana antes de continuar con la gestión normal del ticket.
+
 Se utilizan las acciones:
+
 - APROBAR_TICKET
 - RECHAZAR_TICKET
+
 Los tickets pendientes de aprobación utilizan el estado:
 
 ```text
 PENDIENTE_APROBACION
-```
 
 ## Gestión de errores
 El proyecto utiliza un workflow independiente:
@@ -183,13 +186,14 @@ La documentación incluye:
 - Pruebas y validación
 - Documento final de entrega
 
+```text
 ## Workflow de n8n
+
 El workflow exportado se encuentra en:
 
 ```text
 workflow/
 └── Mesa de Ayuda - Recepción de Incidencias_FINAL.json
-```
 
 El archivo permite disponer del blueprint del workflow utilizado en el proyecto.
 
@@ -208,7 +212,9 @@ Las credenciales deben configurarse directamente en el entorno de ejecución de 
 El proyecto integra automatización, inteligencia artificial, persistencia de datos, clasificación automática, gestión de tickets, aprobación humana para casos críticos, consulta de estados, control de duplicados y gestión centralizada de errores.
 El objetivo es demostrar una arquitectura de automatización aplicable a un escenario real de Mesa de Ayuda IT.
 
+```text
 ## Autor
+
 J.J.LOPEZ
-Tecnologías principales:
-n8n · Telegram · Airtable · OpenRouter · IA
+
+Tecnologías principales: n8n · Telegram · Airtable · OpenRouter · IA
